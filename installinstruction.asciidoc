@@ -1,0 +1,38 @@
+remarks for myself for not forgetting
+this is how I ininitially built pythonocc
+
+clone opencascade framework into your home folder
+make sure the version match with your version of pythonocc-core
+therefor I made the 16-1 branch.
+
+after cloning into /home/you/oce
+
+[source,shell]
+---
+mkdir cmake-build
+cd cmake-build
+flags="-DOCE_INSTALL_PREFIX:PATH=$HOME/oce -DOCE_DRAW:BOOL=ON -DBUILD_SHARED_LIB:BOOL=OFF"
+cmake flags ..
+make
+make test
+make install
+---
+
+the files you need for pythonocc-core are now in /home/you/oce/include/oce and
+/home/you/oce/lib
+
+then cd to your clone of pythonocc-core in /home/you/python0cc-core
+
+[source,shell]
+---
+cd ~/pythonocc-core
+mkdir cmake-build
+cd cmake-build
+cmake -DOCE_INCLUDE_PATH=/home/bas/oce/include/oce -DOCE_LIB_PATH=/home/bas/oce/lib ..
+make
+sudo make install
+cd ../test
+python run_tests.py
+---
+
+done
